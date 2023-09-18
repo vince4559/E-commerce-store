@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    main{
+        @apply flex flex-col items-center w-screen h-screen gap-5 p-10 bg-black border-2 border-blue-400
+    }
+    h1{
+        @apply text-3xl text-blue-400 font-serif font-extrabold
+    }
+    p{
+        @apply text-xl text-blue-500 font-bold
+    }
+    span{
+        @apply font-thin text-blue-100 text-lg
+    }
+    a{
+        @apply text-xl text-blue-200 hover:text-purple-500 underline underline-offset-2 
+    }
+    
+}
