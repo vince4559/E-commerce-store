@@ -1,5 +1,5 @@
 // website that can access this backend api
 
-const allowedOrigins = ["http://localhost:3500"];
+const allowedOrigins = ["http://localhost:5173"];
 
 module.exports = allowedOrigins;

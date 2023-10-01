@@ -13,19 +13,18 @@ const UserSchema = new Schema({
         unique:true
     },
     roles:{
-        user:{
-            type:String, 
-            default:201,            
+        User:{
+            type:Number, 
+            default:2000,            
         },
-        Editor:String,
-        Admin:String
+        Admin:Number
     },
     password:{
         type:String, 
         require:true
     },
     refreshToken: String
-});
+},{timestamps:true});
 
 module.exports =mongoose.model('user', UserSchema)
 
