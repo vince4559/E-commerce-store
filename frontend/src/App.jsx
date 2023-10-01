@@ -1,38 +1,51 @@
-import hng from '../public/hng.jpg';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
+import Public from './components/Public';
+import Login from './features/auth/Login';
+import RequiredAuth from './features/auth/RequiredAuth';
+import Welcome from './features/auth/Welcome';
+import Unauthorized from './components/Unauthorized';
+import Missing from './components/Missing';
+import Dashboard from './components/Dashboard'
+
+// const ROLES = {
+//   'User':2000,
+//   "Admin":5150,
+// };
 
 
-export default function App() {
-  let date = new Date();
-    date.getDay();
-  
-  const currentDayOfTheWeek = new Intl.DateTimeFormat(["en"], {
-    weekday: "long" 
-}).format(date);
 
-const currentUTCTime = date.toUTCString().slice(16);  
+const App = () => {
   return (
-    <main>
-        <h1 data-testid="slackUserName"  ><span>Slack Name: </span> vincent6</h1>
-        <img 
-          data-testid="slackDisplayImage"
-          alt="vincent6"            
-          src={hng}
-          className='w-40 h-50 rounded-xl hover:scale-105'
-        />
-        <p data-testid="currentDayOfTheWeek"><span>Current Day Of the Week: </span> 
-          {currentDayOfTheWeek}
-        </p>
+    // <Public />
+    <Routes>
+      <Route path='/' element={<Layout />} >
+        {/* public route */}
+        <Route index element={<Public />}  />
+        <Route path='login' element={<Login />} />
+        <Route path='/unauthorized' element={<Unauthorized/>} />
+    
+ 
+        {/* protected route */}
+       
+        {/* users page */}
+        <Route  element={<RequiredAuth allowedRoles={[2000]} />} >
+          <Route path='welcome' element={<Welcome />} />
+        </Route>
 
-        <p data-testid="currentUTCTime"><span>Current UTC time: </span> {currentUTCTime} </p>
+         {/* Admin page */}
+         <Route  element={<RequiredAuth allowedRoles={[5150]} />} >
+          <Route path='dashboard' element={<Dashboard />} />
+        </Route>
 
-        <p data-testid="myTrack"><span>Track: </span> FrontEnd</p>
-
-        <a 
-          data-testid="githubURL" 
-          href="https://github.com/vince4559/hngx_1" 
-          target="_blank">
-            Github URL
-        </a>
-      </main>
+          {/* missing route */}
+          <Route path='/*' element={<Missing />} />
+      </Route>
+    </Routes> 
   )
 }
+
+export default App
+
+
+
