@@ -25,7 +25,7 @@ exports.getAllProducts = async (req, res) => {
     
     try {
         if(qNew){
-            products = await Product_Model.find().sort({createdAt: -1}).limit(1);
+            products = await Product_Model.find().sort({createdAt: -1}).limit(4);
         }else if(qCategory){
             products = await Product_Model.find({
                 categories:{

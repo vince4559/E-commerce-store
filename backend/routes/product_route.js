@@ -5,7 +5,7 @@ const Role_List = require('../config/roles_lists');
 const VerifyRoles = require('../middlewares/verifyRoles');
 const verifyJWT = require('../middlewares/VerifyJwt');
 
-productRouter.post('/addproduct',verifyJWT, VerifyRoles(Role_List.Admin), addProduct);
+productRouter.post('/addproduct', addProduct); //verifyJWT, VerifyRoles(Role_List.Admin)
 productRouter.get('/products', getAllProducts);
 productRouter.get('/product/:id', getProductById);
 productRouter.put('/updateproduct/:id',VerifyRoles(Role_List.Admin), updateProduct);
