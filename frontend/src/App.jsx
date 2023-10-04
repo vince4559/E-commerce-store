@@ -7,6 +7,11 @@ import Welcome from './features/auth/Welcome';
 import Unauthorized from './components/Unauthorized';
 import Missing from './components/Missing';
 import Dashboard from './components/Dashboard'
+import Jean from './features/product/categories/Jean';
+import Perfumes from './features/product/categories/Perfumes';
+import Tshirts from './features/product/categories/Tshirts';
+import Shoes from './features/product/categories/Shoes';
+import SingleProduct from './features/product/SingleProduct';
 
 // const ROLES = {
 //   'User':2000,
@@ -24,6 +29,11 @@ const App = () => {
         <Route index element={<Public />}  />
         <Route path='login' element={<Login />} />
         <Route path='/unauthorized' element={<Unauthorized/>} />
+        <Route path='jean' element={<Jean />} />
+        <Route path='perfume' element={<Perfumes />} />
+        <Route path='shoes' element={<Shoes />} />
+        <Route path='tshirts' element={<Tshirts />} />
+        <Route path='product/:id' element={<SingleProduct/>} />
     
  
         {/* protected route */}
@@ -31,6 +41,7 @@ const App = () => {
         {/* users page */}
         <Route  element={<RequiredAuth allowedRoles={[2000]} />} >
           <Route path='welcome' element={<Welcome />} />
+          
         </Route>
 
          {/* Admin page */}
