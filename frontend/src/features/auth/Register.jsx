@@ -1,71 +1,65 @@
 import React,{useState, useRef, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {setCredentials } from './authSlice';
-import { useLoginMutation } from './authApiSlice';
+import { useRegisterMutation } from './authApiSlice';
 
 
 
-
-const Login = () => {
+const Register = () => {
     const userRef = useRef();
     const errRef = useRef();
     const navigate = useNavigate();
     const location = useLocation();
-    const [login, {isLoading}]= useLoginMutation();
+    const [register, {isLoading}]= useRegisterMutation();
+
     const dispatch = useDispatch();
     
 
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errMsg, setErrMsg] = useState('');
 
-    const from = location.state?.from?.pathname || "/"
+    const from = location.state?.from?.pathname || "/login"
 
-    useEffect(() => {
-        userRef.current.focus()
-    },[]);
-
-    useEffect(() => {
-        setErrMsg('')
-    },[email, password]);
-
-    const handleLogin = async(e) => {
+    const handleRegister = async(e) => {
         e.preventDefault();
 
         try {
-            const userData = await login({email, password}).unwrap();
-            dispatch(setCredentials({...userData, email}));
+             await register({username, email, password}).unwrap(); //const userData =
+            // dispatch(setCredentials({...userData, email}));
             navigate(from, {replace:true});
-           
+           window.alert("registration successfull")
         } catch (err) {
-            if(!err?.response === 400){
-                setErrMsg('No server response');
-            } else if(err.response?.status === 401){
-                setErrMsg('Unauthorised');
-            } else{
-                setErrMsg('Login failed');
-            }
-            errRef.current.focus();
+           <p>Error occured</p>
+        //    alert("Registration Not Successful")
         }
     };
 
-    const handleUsernameInput = (e) =>setEmail( e.target.value);
+    const handleUsernameInput = (e) =>setUsername( e.target.value);
+    const handleEmailInput = (e) =>setEmail( e.target.value);
     const handlePasswordInput = (e) => setPassword(e.target.value);
 
     const content = isLoading ? <h1>Loading...</h1> :
     (
         <section className='flex flex-col items-center w-full p-5' >           
-            <h2 className='my-5 text-center'> Login Here</h2>
-            <p className='text-red-600' ref={errRef}>{errMsg}</p>
-            <form onSubmit={handleLogin}>
-                <label htmlFor='email'>Email:</label><br/>
+            <h2 className='my-5 text-center'> Registeration Form</h2>
+            <form onSubmit={handleRegister}>
+                <label htmlFor='username'>Username:</label><br/>
                 <input 
                     type='text'
+                    id='username'
+                    value={username}
+                    onChange={handleUsernameInput}
+                    autoComplete='off'
+                    required
+                /><br/><br/>
+                <label htmlFor='email'>Email:</label><br/>
+                <input 
+                    type='email'
                     id='email'
                     ref={userRef}
                     value={email}
-                    onChange={handleUsernameInput}
+                    onChange={handleEmailInput}
                     autoComplete='on'
                     required
                 /><br/><br/>
@@ -74,7 +68,6 @@ const Login = () => {
                 <input 
                     type='password'
                     id='password'
-                    ref={userRef}
                     value={password}
                     onChange={handlePasswordInput}
                     autoComplete='off'
@@ -92,4 +85,4 @@ const Login = () => {
   return content;
 }
 
-export default Login
+export default Register

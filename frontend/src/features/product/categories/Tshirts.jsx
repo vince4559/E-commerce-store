@@ -1,4 +1,4 @@
-import Product from "../../../components/Product";
+import ProductList from "../../../components/ProductList";
 import { useGetTshirtQuery } from "../productApiSlice"
 
 const Tshirts = () => {
@@ -16,7 +16,7 @@ const Tshirts = () => {
                 <ul className="item" >
                     {
                         products.map((prod) => {
-                            return <Product key={prod._id} prod={prod} />
+                            return <ProductList key={prod._id} prod={prod} />
                         })
                     }
                 </ul>

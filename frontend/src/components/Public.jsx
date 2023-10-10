@@ -8,6 +8,7 @@ import shoe from '/shoe.jpg'
 import tshirt from '/tshirt.jpg'
 import groovyWalkAnimation from '../../public/Animation - 1696085114897.json'
 import { useLottie } from "lottie-react";
+import { Link } from 'react-router-dom';
 
 
 const Public = () => {
@@ -21,10 +22,12 @@ const Public = () => {
           <div className='mx-auto mb-4 w-72'>
               {View}
           </div>
-      
+            <h3 className='mb-3'>
+              <Link to={'/products'}>Explore all Our Products</Link>
+            </h3>
             <h3 className='mb-3'>Categories</h3>
            <div className='my-5 item '>
-              <div className='w-48 overflow-hidden border h-52 border-slate-300'>  
+              <div className='flexItem'>  
                    <a href='/jean'>
                       <h3>Jean</h3> 
                       <h3 className='text-green-300' >Shop Now</h3>         
@@ -32,7 +35,7 @@ const Public = () => {
                       <h3 >Shop Now</h3> 
                     </a>         
                 </div>
-              <div className='w-48 overflow-hidden border h-52 border-slate-300'>  
+              <div className='flexItem'>  
                     <a href='/perfume'>
                       <h3>Perfume</h3> 
                       <h3 className='text-green-300' >Shop Now</h3>         
@@ -40,7 +43,7 @@ const Public = () => {
                       <h3 >Shop Now</h3>  
                     </a>          
                 </div>
-              <div className='w-48 overflow-hidden border h-52 border-slate-300'>  
+              <div className='flexItem'>  
                     <a href='/shoes'>
                       <h3>Shoe</h3> 
                       <h3 className='text-green-300' >Shop Now</h3>         
@@ -48,7 +51,7 @@ const Public = () => {
                       <h3 >Shop Now</h3>  
                     </a>          
                 </div>
-              <div className='w-48 overflow-hidden border h-52 border-slate-300'>  
+              <div className='flexItem'>  
                     <a href='/tshirts'>
                       <h3>tshirt</h3> 
                       <h3 className='text-green-300' >Shop Now</h3>         

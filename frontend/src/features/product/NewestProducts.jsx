@@ -1,4 +1,4 @@
- import Product from "../../components/Product";
+import ProductList from "../../components/ProductList";
 import { useGetNewestProductsQuery } from "./productApiSlice"
 
 const NewestProducts = () => {
@@ -16,7 +16,7 @@ const NewestProducts = () => {
                 <ul className="item" >
                     {
                         products.map(prod => {
-                            return <Product prod={prod} key={prod._id} />
+                            return <ProductList prod={prod} key={prod._id} />
                         })
                     }
                 </ul>
