@@ -12,6 +12,7 @@ const verifyJWT = require('./middlewares/VerifyJwt');
 const userRouter = require('./routes/user_routes');
 const productRouter = require('./routes/product_route');
 const cartRouter = require('./routes/cart_route');
+const stripeRouter = require('./routes/stripe_route');
 
 const PORT =  process.env.PORT || 3500;
 const app = express();
@@ -41,6 +42,7 @@ app.get('/', (req, res) => {
 app.use(authRouter);
 app.use(productRouter)
 app.use(cartRouter)
+app.use(stripeRouter)
 
 app.use(verifyJWT);
 app.use(userRouter);
