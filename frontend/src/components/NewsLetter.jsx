@@ -14,7 +14,7 @@ const NewsLetter = () => {
                 placeholder='Your Email Here'
                 autoComplete='off'
                 required
-                onClick={e => seEmail(e.target.value)}
+                onChange={e => seEmail(e.target.value)}
             />
             <button className='btn btn-secondary'>Click Me</button>
         </div>

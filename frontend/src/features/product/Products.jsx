@@ -6,7 +6,7 @@ const Products = ({filters, sort}) => {
     const {data, isLoading, isSuccess} = useGetProductsQuery();
     const products = data
     const [filterProducts, setFilterProducts] = useState([])
-   console.log(filterProducts)
+//    console.log(filterProducts)
     
     useEffect(() => {
         setFilterProducts(
