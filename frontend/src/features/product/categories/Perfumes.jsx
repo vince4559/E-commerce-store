@@ -2,13 +2,15 @@ import ProductList from "../../../components/ProductList";
 import { useGetPerfumeQuery } from "../productApiSlice"
 
 const Perfumes = () => {
-    const {data, isLoading, isSuccess} = useGetPerfumeQuery();
+    const {data, isLoading, isSuccess, isError} = useGetPerfumeQuery();
     const products = data
-    // console.log(products)
+    console.log(products)
 
     let content;
     if(isLoading){
         content = <p>Loading...</p>
+    }else if(isError){
+        return <h3>Data Not Found!</h3>
     } else if(isSuccess){
         content = (
             <section className="w-full p-3 bg-slate-900">
@@ -16,7 +18,7 @@ const Perfumes = () => {
                 <ul className="item" >
                     {
                         products.map((prod) => {
-                            return <ProductList prod={prod} key={prod._id} />
+                            return <ProductList prod={prod} key={prod._id}  />
                         })
                     }
                 </ul>
@@ -29,3 +31,5 @@ const Perfumes = () => {
 
 export default Perfumes
 
+
+// <CartProductList prod={prod} key={prod._id}  />

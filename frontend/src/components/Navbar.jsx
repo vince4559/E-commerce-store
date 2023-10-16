@@ -39,7 +39,7 @@ const Navbar = () => {
                 {/* cart */}
                 <NavLink to='/cart' style={({isActive}) => isActive? {color:'green'}:{color:'blue'}} 
                 onClick={() => setOpen(false)}>                  
-                    <p className='absolute w-4 h-6 font-light text-center text-yellow-400 bg-black rounded-lg md:right-80'>
+                    <p className='absolute w-4 h-6 font-light text-center text-yellow-400 bg-black rounded-lg md:left-90'>
                         {Quantity}
                     </p>                
                     <img src={cart} alt='cart icon' className='w-12' />                  
@@ -55,13 +55,17 @@ const Navbar = () => {
 
 
             <div className='items-center hidden gap-7 md:flex'>
-            <NavLink to='/register'style={({isActive}) => isActive? {color:'green'}:{color:'blue'}}>
-                Register
-            </NavLink>                  
+            <NavLink to='/products'style={({isActive}) => isActive? {color:'green'}:{color:'blue'}}>
+                Products
+            </NavLink> 
+                             
             <NavLink to='/dashboard'style={({isActive}) => isActive? {color:'green'}:{color:'blue'}}>
                 Dashboard
             </NavLink>
             
+            <NavLink to='/register'style={({isActive}) => isActive? {color:'green'}:{color:'blue'}}>
+                Register
+            </NavLink>             
             { user?
             <Logout />
             :<NavLink to='/login'  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}}>Login</NavLink>
@@ -70,14 +74,23 @@ const Navbar = () => {
             
 
             {/* mobile */}
-            <ul className={`md:hidden absolute w-full  top-0 bg-slate-400 pl-5 py-24 duration-500 ${open?'left-0':'left-[100%]'}`}>
-                    <li className='flex flex-col gap-5 mt-8'>                 
-                    <NavLink to='/register' style={({isActive}) => isActive? {color:'green'}:{color:'blue'}} onClick={toggle} >Register</NavLink>          
-                    <NavLink to='/dashboard'  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}} onClick={toggle}>Dashboard</NavLink>
-                    {/* <NavLink to='/cart'  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}} onClick={toggle}>Cart</NavLink> */}
+            <ul className={`md:hidden absolute w-full  top-0 bg-slate-400 pl-5 py-24 duration-500 ${open?'left-0':'left-[100%]'}`}>  
+            <li className='flex flex-col gap-5 mt-8'>      
+                     <NavLink to='/products'  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}} onClick={toggle}>
+                        Products
+                    </NavLink>
+                    <NavLink to='/dashboard'  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}} onClick={toggle}>
+                        Dashboard
+                    </NavLink>
+                                 
+                    <NavLink to='/register' style={({isActive}) => isActive? {color:'green'}:{color:'blue'}} onClick={toggle} >
+                        Register
+                    </NavLink>
                     {user?
                     <Logout />
-                    :<NavLink to='/login'  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}}>Login</NavLink>}
+                    :<NavLink to='/login'  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}}>
+                        Login
+                    </NavLink>}
                 </li>
                 
                 

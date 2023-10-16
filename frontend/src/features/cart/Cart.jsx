@@ -1,105 +1,119 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { Link,  useNavigate } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import { usePaymentMutation } from '../stripePayment/paymentApiSlice';
+import FormatCurrency from '../../utils/FormatCurrency';
+import CartItem from '../../components/CartItem';
+import { selectCurrentUser } from '../auth/authSlice';
+import { resetCart } from './cartSlice';
+
 
 
 const Cart = () => {
+    const [totalAmount, settoTalAmount] = useState(0);
     const [stripeToken, setStripeToken] = useState(null);
+    
+    const dispatch = useDispatch();
     const cart = useSelector(state => state.cart);
     const [payment, {isLoading}] = usePaymentMutation();
     
-    const KEY = "pk_test_51NziBnF6kCcMStWYifcAHxLHeDAxqylaXp4DA6Mt8TDLVtp3H1xKr8Q7xWVrv3bmTXiLII8u3kRqCPCiNGeoYbnD005yg55hv9";
+    const user = useSelector(selectCurrentUser);
+    // console.log(user)
+    const navigate = useNavigate();
+    const products = cart.products;
+    
+    
+    const stripeSecreteKEY = import.meta.env.VITE_STRIPE_KEY; //publishable key
 
     const onToken =(token) => {
         setStripeToken(token)
     };
-    // console.log(stripeToken);
 
+    useEffect(() => {
+        let price = 0;
+        products.map((product) => {
+            price += product.price * product.quantity;
+            return price
+        });
+        settoTalAmount(price)
+    },[products]);
+    
+    // console.log(stripeToken);
     const makePayment = async () => {
         try {
-         const data =    await payment({
+            const data =    await payment({
                 tokenId:stripeToken.id, 
-                amount:cart.total*100,                
+                amount:totalAmount*100,                
             }).unwrap();
-            console.log(data)
+            navigate('/success')
+            dispatch(resetCart())
+            console.log(data) 
         } catch (err) {
             console.log(err)
         }
     };
 
     useEffect(() => {
-       cart.total>=1 && stripeToken && makePayment()
+      totalAmount>=1 && stripeToken && makePayment()
     },[stripeToken])
     
   return (
     <section className='bg-slate-800'>
-        <div className='flex justify-between'>
-          <Link to={'/products'}>Countinue Shopping</Link>
-            <h3>Your Shopping List</h3>
-        </div>
+            <h3 className='text-center'>Your Shopping List</h3>        
         
         <div className='grid items-center gap-3 p-4 md:grid-cols-3'>
              <div className='col-span-2'>
              {cart.products.map((product) => (           
-                <div  key={product._id}>
-                   <div className='flex gap-3 p-2'>
-                     <img src={product.img} alt='cart_img' width={150} />
-                        <div className='p-2'>
-                            <p>{product.title}</p>
-                            <p>Color:{product.color}</p>
-                            <p>Size:{product.size}</p>
-                            <p>Quantity:{product.quantity}</p>
-                            <p>Price:{product.price * product.quantity}</p>
-                        </div>
-                    </div>   
-                    <hr />                                
-                </div>                  
+                <CartItem key={product._id} product={product} />              
                 ))}
              </div>
-
-                
-                <div className='p-3 bg-gray-400 rounded-md w-60 h-fit '>
+             <div className='p-3 bg-gray-400 rounded-md w-60 h-fit'>
                     <h3 className='text-black'>Order Summary</h3>
                     <div className='flex justify-between my-2'>
                         <p>Subtotal</p>
-                        <p>{cart.total}</p>
+                        <p>{FormatCurrency(totalAmount)}</p>
                     </div>
                     <div className='flex justify-between my-2'>
                         <p>Estimated Shipping</p>
                         <p>$10</p>
                     </div>
                     <div className='flex justify-between my-2'>
-                        <p>Shipping Discount</p>
+                        <p>Garage Boys</p>
                         <p>$10</p>
                     </div>
                     <div className='flex justify-between my-2'>
                         <h3>Total</h3>
-                        <h3>${cart.total}</h3>
+                        <h3>{FormatCurrency(totalAmount)}</h3>
                     </div>
                    
                    {/* stripe checkout */}
-                   {isLoading? <p>Processing</p>:
-                   <StripeCheckout 
-                    name="Fashion store"
-                    
-                    billingAddress
-                    shippingAddress
-                    description={`Your cart total is ${cart.total}`}
-                    amount={cart.total*100}
-                    stripeKey={KEY}
-                    token={onToken}
-                   >
-                        <button className='w-full btn btn-primary'>
-                            Check Out Now
+                   {isLoading? <p>Processing...</p>:
+                   <div>
+                        <StripeCheckout 
+                        name="Fashion store"
+                        billingAddress
+                        shippingAddress
+                        description={`Your cart total is ${FormatCurrency(totalAmount)}`}
+                        amount={totalAmount*100}
+                        stripeKey={stripeSecreteKEY}
+                        token={onToken} //token from the backend
+                        email={user}
+                        
+                        >
+                        <button className='w-full btn btn-primary' disabled={!user}  
+                            onClick={makePayment}>
+                            Proceed to checkout
                         </button>
                    </StripeCheckout>
+                    {!user && <p className='text-red-300'>Login to proceed to checkout</p>}
+                   </div>
                 }
-                </div>                       
+                </div>      
+                <Link to={'/products'}>Countinue Shopping</Link>   
            </div>  
 
-              
+           
     </section>
   )
 }

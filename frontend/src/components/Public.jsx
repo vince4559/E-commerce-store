@@ -9,6 +9,7 @@ import tshirt from '/tshirt.jpg'
 import groovyWalkAnimation from '../../public/Animation - 1696085114897.json'
 import { useLottie } from "lottie-react";
 import { Link } from 'react-router-dom';
+import '../App.css';
 
 
 const Public = () => {
@@ -18,10 +19,16 @@ const Public = () => {
   };
   const { View } = useLottie(options);
   return (
-   <section className="w-full p-10 bg-black">
-          <div className='mx-auto mb-4 w-72'>
+   <section className="w-full p-5 bg-black">
+        <div className="bg-white custom-shape-divider-bottom-1697118389">
+          <div className='mx-auto mb-4 w-60 '>
               {View}
           </div>
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" className="shape-fill"></path>
+          </svg>          
+      </div>
+          
             <h3 className='mb-3'>
               <Link to={'/products'}>Explore all Our Products</Link>
             </h3>
@@ -35,14 +42,7 @@ const Public = () => {
                       <h3 >Shop Now</h3> 
                     </a>         
                 </div>
-              <div className='flexItem'>  
-                    <a href='/perfume'>
-                      <h3>Perfume</h3> 
-                      <h3 className='text-green-300' >Shop Now</h3>         
-                      <img src={perfume} alt='perfume' loading='lazy'/>
-                      <h3 >Shop Now</h3>  
-                    </a>          
-                </div>
+              
               <div className='flexItem'>  
                     <a href='/shoes'>
                       <h3>Shoe</h3> 

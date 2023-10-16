@@ -2,13 +2,15 @@ import ProductList from "../../../components/ProductList";
 import { useGetTshirtQuery } from "../productApiSlice"
 
 const Tshirts = () => {
-    const {data, isLoading, isSuccess} = useGetTshirtQuery();
+    const {data, isLoading, isSuccess, isError} = useGetTshirtQuery();
     const products = data
     // console.log(products)
 
     let content;
     if(isLoading){
         content = <p>Loading...</p>
+    } else if(isError){
+        return <h3>Data Not Found!</h3>
     } else if(isSuccess){
         content = (
             <section className="w-full p-3 bg-slate-900">

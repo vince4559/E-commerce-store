@@ -8,7 +8,6 @@ import Unauthorized from './components/Unauthorized';
 import Missing from './components/Missing';
 import Dashboard from './components/Dashboard'
 import Jean from './features/product/categories/Jean';
-import Perfumes from './features/product/categories/Perfumes';
 import Tshirts from './features/product/categories/Tshirts';
 import Shoes from './features/product/categories/Shoes';
 import SingleProduct from './features/product/SingleProduct';
@@ -16,6 +15,7 @@ import Register from './features/auth/Register';
 import Products from './features/product/Products';
 import FilterProducts from './components/FilterProducts';
 import Cart from './features/cart/Cart';
+import Success from './components/Success';
 
 // const ROLES = {
 //   'User':2000,
@@ -35,12 +35,12 @@ const App = () => {
         <Route path='register' element={<Register />} />
         <Route path='/unauthorized' element={<Unauthorized/>} />
         <Route path='jean' element={<Jean />} />
-        <Route path='perfume' element={<Perfumes />} />
         <Route path='shoes' element={<Shoes />} />
         <Route path='tshirts' element={<Tshirts />} />
         <Route path='product/:id' element={<SingleProduct/>} />
         <Route path='products' element={<FilterProducts />} />
         <Route path='cart' element={<Cart />} />
+        <Route path='success' element={<Success />} />
     
  
         {/* protected route */}

@@ -2,13 +2,15 @@ import ProductList from "../../../components/ProductList";
 import { useGetShoesQuery } from "../productApiSlice"
 
 const Shoes = () => {
-    const {data, isLoading, isSuccess} = useGetShoesQuery();
+    const {data, isLoading, isSuccess, isError} = useGetShoesQuery();
     const products = data
     // console.log(products)
 
     let content;
     if(isLoading){
         content = <p>Loading...</p>
+    } else if(isError){
+        return <h3>Data Not Found!</h3>
     } else if(isSuccess){
         content = (
             <section className="container">

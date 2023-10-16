@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {setCredentials } from './authSlice';
 import { useLoginMutation } from './authApiSlice';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -36,8 +37,9 @@ const Login = () => {
         try {
             const userData = await login({email, password}).unwrap();
             dispatch(setCredentials({...userData, email}));
+            toast.success('Login successfull')
             navigate(from, {replace:true});
-           
+          
         } catch (err) {
             if(!err?.response === 400){
                 setErrMsg('No server response');
@@ -47,6 +49,7 @@ const Login = () => {
                 setErrMsg('Login failed');
             }
             errRef.current.focus();
+            toast.error('Login failed try again!!')
         }
     };
 
@@ -86,6 +89,11 @@ const Login = () => {
                     SignIn
                 </button>
             </form>
+            <ToastContainer 
+                autoClose={1000}
+                draggable
+                theme='dark'
+            />
         </section>
     )
 
