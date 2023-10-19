@@ -59,4 +59,10 @@
     option{
         @apply  bg-slate-400 font-medium 
     }
+    .dash_link{
+        @apply rounded bg-slate-200 px-1 flex 
+    }
+    .small_widget{
+        @apply w-48 h-48 border rounded-lg border-slate-600 p-2 bg-gray-900 flex flex-col gap-4
+    }
 } 

@@ -12,10 +12,11 @@ import Tshirts from './features/product/categories/Tshirts';
 import Shoes from './features/product/categories/Shoes';
 import SingleProduct from './features/product/SingleProduct';
 import Register from './features/auth/Register';
-import Products from './features/product/Products';
 import FilterProducts from './components/FilterProducts';
 import Cart from './features/cart/Cart';
 import Success from './components/Success';
+import { selectCurrentUser } from './features/auth/authSlice';
+import { useSelector } from 'react-redux';
 
 // const ROLES = {
 //   'User':2000,
@@ -23,8 +24,9 @@ import Success from './components/Success';
 // };
 
 
-
 const App = () => {
+  const user = useSelector(selectCurrentUser);
+  // console.log(user)
   return (
     // <Public />
     <Routes>
@@ -41,13 +43,14 @@ const App = () => {
         <Route path='products' element={<FilterProducts />} />
         <Route path='cart' element={<Cart />} />
         <Route path='success' element={<Success />} />
+        {/* <Route path='dashboard' element={<Dashboard />} /> */}
     
  
         {/* protected route */}
        
         {/* users page */}
         <Route  element={<RequiredAuth allowedRoles={[2000]} />} >
-          <Route path='welcome' element={<Welcome />} />
+          {user && <Route path='welcome' element={<Welcome />} />}
           
         </Route>
 

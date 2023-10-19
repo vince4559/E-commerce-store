@@ -19,10 +19,6 @@ export const productApiSlice = apiSlice.injectEndpoints({
             query:() => '/products?category=tshirt',
             keepUnusedDataFor:60
         }),
-        getPerfume: builder.query({
-            query:() => '/products?category=perfume',
-            keepUnusedDataFor:60
-        }),
         getJean: builder.query({
             query:() => '/products?category=jean',
             keepUnusedDataFor:60
@@ -39,7 +35,6 @@ export const {
     useGetProductsQuery,
     useGetNewestProductsQuery,
     useGetJeanQuery,
-    useGetPerfumeQuery,
     useGetShoesQuery,
     useGetTshirtQuery,
     useGetProductByIdQuery

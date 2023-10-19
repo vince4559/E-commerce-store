@@ -29,7 +29,7 @@ const Navbar = () => {
         
         { user && <p className='font-medium text-right text-blue-950'>welcome {user}</p>}
        </div>
-        <nav className='flex items-center justify-between px-1 md:px-4'>
+        <nav className='flex items-center justify-between w-full px-1 md:px-4'>
             <div className='z-50 flex items-center justify-between w-full p-5'>
                 <NavLink to={'/'}  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}}  
                 onClick={() => setOpen(false)}>
