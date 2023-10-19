@@ -1,5 +1,5 @@
 // website that can access this backend api
 
-const allowedOrigins = ["https://e-commerce-store-byp7d9xom-vince4559.vercel.app"];
+const allowedOrigins = ["http://localhost:5173", "https://e-commerce-store-ruby-zeta.vercel.app"];
 
 module.exports = allowedOrigins;
