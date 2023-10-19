@@ -8,11 +8,12 @@ const credentials = require('./middlewares/credentials');
 const mongoose = require('mongoose');
 const connectDB = require('./config/dbconnect');
 const authRouter = require('./routes/auth_route');
-const verifyJWT = require('./middlewares/verifyJwt');
+const verifyJWT = require('./middlewares/verifyJWT');
 const userRouter = require('./routes/user_routes');
 const productRouter = require('./routes/product_route');
 const cartRouter = require('./routes/cart_route');
 const stripeRouter = require('./routes/stripe_route');
+
 
 const PORT =  process.env.PORT || 3500;
 const app = express();
