@@ -14,14 +14,14 @@ const CartItem = ({product}) => {
             !product ? (<p>Your cart is empty</p>)
             :
             (<div>
-            <div className='flex gap-3 p-2'>
-            <img src={product.img} alt='cart_img' width={150} />
-            <div className='p-2'>
-                <p>{product.title}</p>
-                <p>Color:{product.color}</p>
-                <p>Size:{product.size}</p>
-                <p>Quantity:{product.quantity}</p>
-                <p>Price:{FormatCurrency(product.price * product.quantity)}</p>
+            <div className='flex flex-wrap gap-3 p-2'>
+            <img src={product.img} alt='cart_img' width={'200'} height={'100'}/>
+            <div className='flex flex-col gap-2 p-2'>
+                <p>{product.title.toUpperCase()}</p>
+                <p>Color: {product.color}</p>
+                <p>Size: {product.size}</p>
+                <p>Quantity: {product.quantity}</p>
+                <p>Price: {FormatCurrency(product.price * product.quantity)}</p>
                     
                 <h2 >
                 <button className='w-4 border rounded-md border-slate-500' 

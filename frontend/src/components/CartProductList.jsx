@@ -28,7 +28,7 @@ const CartProductList = ({prod}) => {
       <div className='w-48 h-auto p-1 cursor-pointer'
         onClick={handleClick}
       >
-        <img src={prod.img} alt={prod.title} className='h-50 w-60' />
+        <img src={prod.img} alt={prod.title} className='h-60 w-60' />
         <h4>{prod.title}</h4>
         {prod?.categories.map(cat => <p key={prod._id}>Category: {cat}</p>)}
         <p>{FormatCurrency(prod.price)}</p>

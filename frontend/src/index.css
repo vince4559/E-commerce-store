@@ -16,7 +16,7 @@
         @apply text-xl text-green-200 font-mono font-bold text-center
     }
     h4{
-        @apply  font-mono font-medium text-blue-300
+        @apply   font-serif text-slate-300
     }
     p{
         @apply  text-white font-sans 

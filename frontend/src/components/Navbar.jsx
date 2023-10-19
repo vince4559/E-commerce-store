@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <header className='w-full bg-gray-400' >
        <div>
-       <p className="p-1 text-center bg-green-400 ">
+       <p className="p-1 text-center bg-green-950 ">
         Supper deal! free shipping on orders over $100 
         </p>
         

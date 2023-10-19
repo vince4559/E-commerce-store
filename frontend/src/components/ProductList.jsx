@@ -10,12 +10,14 @@ const ProductList = ({prod}) => {
   };
   return (
     <section >
-      <div className='w-48 h-auto p-1 border border-blue-300 cursor-pointer'
+      <div className='w-48 h-auto p-1 border border-blue-300 cursor-pointer rounded-xl'
         onClick={handleClick}
       >
-        <img src={prod.img} alt={prod.title} className='h-50 w-60' />
-        <h4>{prod.title}</h4>
-        {prod?.categories.map(cat => <p key={prod._id}>Category: {cat}</p>)}
+        <img src={prod.img} alt={prod.title} className='h-48 w-60' />
+        <hr/>
+        <h4>{prod.title.toUpperCase()}</h4>
+        <hr/>
+        {/* {prod?.categories.map(cat => <p key={prod._id}>Category: {cat}</p>)} */}
         <p>{FormatCurrency(prod.price)}</p>
         <p>inStock: {prod.inStock?'true':'false'}</p> 
       </div>

@@ -65,16 +65,16 @@ const SingleProduct = () => {
                 </p>
                 <p className='flex gap-2 text-black '>
                   <span className='font-medium text-green-700'>Color:</span>                   
-                  <select className='w-fit' onChange={(e) => setColor(e.target.value)} >
-                    {product.color.map(c => <option key={c} onChange={() => setColor(c)}>{c}</option>)}
+                  <select  className='w-fit' onChange={(e) => setColor(e.target.value)} >
+                    {product.color.map(c => <option key={c} value={c} onChange={() => setColor(c)} value={c}>{c}</option>)}
                   </select>
                 </p>
                 <p className='flex gap-3 text-black'>
                 <span className='font-medium text-green-700'>Size:</span>                   
-                <select className='w-fit' onChange={(e) => setSize(e.target.value)} >
-                  {product?.size?.map(s => <option key={s} >{s}</option>)}
+                  <select className='w-fit' onChange={(e) => setSize(e.target.value)} >
+                  {product?.size?.map(s => <option key={s} value={s} >{s}</option>)}
                 </select>
-                </p>
+                </p>                
                 <p className='font-bold text-black'>
                   <span className='font-medium text-green-700'>Price:</span> {FormatCurrency(product.price)}
                 </p>
