@@ -3,7 +3,7 @@ const { addProduct, getAllProducts, getProductById, updateProduct, deleteProduct
 const productRouter = express.Router();
 const Role_List = require('../config/roles_lists');
 const VerifyRoles = require('../middlewares/verifyRoles');
-const verifyJWT = require('../middlewares/VerifyJwt');
+// const verifyJWT = require('../middlewares/verifyJWT');
 
 productRouter.post('/addproduct', addProduct); //verifyJWT, VerifyRoles(Role_List.Admin)
 productRouter.get('/products', getAllProducts);
