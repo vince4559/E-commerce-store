@@ -44,6 +44,7 @@ app.use(productRouter)
 app.use(cartRouter)
 app.use(stripeRouter)
 
+
 app.use(verifyJWT);
 app.use(userRouter);
 
