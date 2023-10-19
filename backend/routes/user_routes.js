@@ -1,7 +1,6 @@
 const express = require('express');
 const { getAllUser, getUserById, updateUser, deleteUser, getUsersStats } = require('../controllers/userController');
 const userRouter = express.Router();
-const verifyJWT = require('../middlewares/VerifyJwt');
 const verifyRoles = require('../middlewares/verifyRoles');
 const Role_List = require('../config/roles_lists') 
 
