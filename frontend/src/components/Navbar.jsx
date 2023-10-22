@@ -74,7 +74,7 @@ const Navbar = () => {
             
 
             {/* mobile */}
-            <ul className={`md:hidden absolute w-full  top-0 bg-slate-400 pl-5 py-24 duration-500 ${open?'left-0':'left-[100%]'}`}>  
+            <ul className={`md:hidden absolute w-full  top-0 bg-slate-400 pl-5 py-24 duration-500 ${open?'left-0':'left-['hidden]'}`}>  
             <li className='flex flex-col gap-5 mt-8'>      
                      <NavLink to='/products'  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}} onClick={toggle}>
                         Products
@@ -88,7 +88,7 @@ const Navbar = () => {
                     </NavLink>
                     {user?
                     <Logout />
-                    :<NavLink to='/login'  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}}>
+                    :<NavLink to='/login'  style={({isActive}) => isActive? {color:'green'}:{color:'blue'}} onClick={toggle}>
                         Login
                     </NavLink>}
                 </li>
